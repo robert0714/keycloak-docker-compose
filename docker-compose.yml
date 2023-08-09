@@ -1,0 +1,45 @@
+version: "3.3"
+
+services:
+  keycloak:
+     image: quay.io/keycloak/keycloak:22.0
+     container_name: keycloak
+     restart: always
+     command: start
+     network_mode: host 
+     depends_on:
+       - postgres
+     environment:
+       - DB_VENDOR=POSTGRES
+       - DB_ADDR=postgres
+       - DB_DATABASE=keycloak
+       - DB_USER=keycloak
+       - DB_SCHEMA=public
+       - DB_PASSWORD= password
+       - KEYCLOAK_ADMIN=admin
+       - KEYCLOAK_ADMIN_PASSWORD=Pa55w0rd
+       - PROXY_ADDRESS_FORWARDING=true
+       - KC_HOSTNAME_PATH=/auth
+       - KC_HOSTNAME_STRICT=false
+       - KC_HOSTNAME_STRICT_HTTPS=false
+       - KC_HTTP_ENABLED=true
+       - KC_HTTP_RELATIVE_PATH=auth
+       - KC_HTTP_PORT=8083
+       - KC_PROXY=edge
+       - TZ=Asia/Taipei
+  postgres:
+     image: postgres
+     container_name: postgres
+     volumes:
+        - $PWD/postgres_data:/var/lib/postgresql/data
+     environment:
+       POSTGRES_DB: keycloak
+       POSTGRES_USER: keycloak
+       POSTGRES_PASSWORD: password
+  nginx:
+    image: nginx:1.25.1
+    container_name: nginx
+    restart: on-failure
+    volumes:
+      - $PWD/nginx.conf:/etc/nginx/nginx.conf:ro
+    network_mode: host
