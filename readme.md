@@ -4,6 +4,9 @@
 * https://docs.nginx.com/nginx-management-suite/admin-guides/access-control/oidc-keycloak/
 * https://www.nginx.com/blog/harnessing-power-convenience-of-javascript-for-each-request-with-nginx-javascript-module/
 * https://www.nginx.com/blog/harnessing-power-convenience-of-javascript-for-each-request-with-nginx-javascript-module/#njs-enable
+* https://github.com/keycloak/keycloak-community
+* https://github.com/keycloak/keycloak-containers
+* https://github.com/keycloak/keycloak/blob/main/examples/providers/authenticator/README.md
 ## Conclusion
 **The NGINX JavaScript module is included by default in the official NGINX Docker image**
 ## Special Case
