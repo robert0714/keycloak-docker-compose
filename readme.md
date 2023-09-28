@@ -18,6 +18,7 @@
 ## Test
 http://localhost/auth/
 
+
 # Keycloak Variable
 * https://www.keycloak.org/server/all-config#category-http
 * https://www.keycloak.org/server/containers
@@ -31,3 +32,14 @@ $ docker run -p 8080:8080 \
     -e KEYCLOAK_ADMIN_PASSWORD=password \
     keycloak/keycloak:17.0.0  start-dev
 ```    
+# Keycloak Theme
+## Change Theme
+* Configure >> Realm Settings >> Theme
+* Manage >> Clients >> Clients List >> ${{ CUSTOM_CLIENT_ID }} >> Settings >> Login settings >> Login theme
+
+## Related reference
+* [Customising Keycloak Theme](https://youtu.be/NH8dP647Lc0?list=PLeGNmkzI56BTjRxNGxUhh4k30FD_gy0pC&t=1200)
+* https://www.baeldung.com/keycloak-custom-login-page
+ * [How to Create a Custom Login Theme for Keycloak in Docker](https://czetsuya.medium.com/how-to-create-a-custom-login-theme-for-keycloak-9b9f5f271fc0)
+       * [sourceCode](https://github.com/czetsuya/ct-keycloak-iam)
+       * [Alfresco Keycloak Theme](https://github.com/Alfresco/alfresco-keycloak-theme)
