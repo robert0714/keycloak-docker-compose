@@ -22,7 +22,7 @@ services:
        - KC_HTTP_ENABLED=true
        - KC_HTTP_RELATIVE_PATH=auth
        - KC_HTTP_PORT=8083
-       - KC_PROXY=edge
+       #- KC_PROXY=edge
        - TZ=Asia/Taipei
      volumes:
       - $PWD/themes:/opt/keycloak/themes
