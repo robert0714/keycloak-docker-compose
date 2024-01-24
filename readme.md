@@ -46,3 +46,44 @@ $ docker run -p 8080:8080 \
  * [How to Create a Custom Login Theme for Keycloak in Docker](https://czetsuya.medium.com/how-to-create-a-custom-login-theme-for-keycloak-9b9f5f271fc0)
        * [sourceCode](https://github.com/czetsuya/ct-keycloak-iam)
        * [Alfresco Keycloak Theme](https://github.com/Alfresco/alfresco-keycloak-theme)
+# Create Keycloak Instance by Azure WebApp
+* Referense: https://www.youtube.com/watch?v=neHFkd8c-gc&t=202s
+  * 20-  version for Azure
+  ```yaml
+  version: 3
+  services:
+    keycloak:
+       image: jboss/keycloak:16.1.1
+       container_name: keycloak
+       restart: always
+       environment:
+         - KEYCLOAK_USER=admin
+         - KEYCLOAK_PASSWORD=Pa55w0rd
+         - PROXY_ADDRESS_FORWARDING=true
+         - KC_HOSTNAME_PATH=/auth
+         - KC_HOSTNAME_STRICT=false
+         - KC_HOSTNAME_STRICT_HTTPS=false
+         - KC_HTTP_ENABLED=true
+         - KC_HTTP_RELATIVE_PATH=auth
+         - TZ=Asia/Taipei
+       volumes:
+         - ${WEBAPP_STORAGE_HOME}/data:/opt/jboss/keycloak/standalone/data
+  ```
+  * 20+  version for Azure
+  ```yaml
+  version: 3
+  services:
+    keycloak:
+       image: quay.io/keycloak/keycloak:23.0
+       restart: always
+       command: start
+       environment:
+         - KEYCLOAK_ADMIN=admin
+         - KEYCLOAK_ADMIN_PASSWORD=Pa55w0rd
+         - PROXY_ADDRESS_FORWARDING=true
+         - KC_HOSTNAME_PATH=/auth
+         - KC_HOSTNAME_STRICT=false
+         - KC_PROXY=edge
+         - KC_HTTP_RELATIVE_PATH=auth
+         - TZ=Asia/Taipei
+  ```
